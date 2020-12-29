@@ -2,7 +2,7 @@ Web Serial API binding for [Node.js serialport](https://serialport.io/)
 
 ```ts
 import SerialPort from '@serialport/stream';
-import WSABinding from 'serialport-binding-web-serial-api';
+import WSABinding from 'serialport-binding-webserialapi';
 
 SerialPort.Binding = WSABinding;
 
@@ -21,7 +21,7 @@ If this is a brand new project, make sure to create a `package.json` first with 
 Installation is done using the [`npm install` command](https://docs.npmjs.com/getting-started/installing-npm-packages-locally):
 
 ```bash
-$ npm install serialport-binding-web-serial-api
+$ npm install serialport-binding-webserialapi
 ```
 
 As this module provides [Web Serial API](https://wicg.github.io/serial/) bindings for [node.js serialport](https://serialport.io/), applications using it will require `@serialport/stream` module installed as well. This is provided for You by Node.js dependency mechanism.
@@ -57,7 +57,7 @@ Usage of Web Serial API is straightforward, as it does not expose new functional
   * `update` command is not implemented, as there is no support in Web Serial API for baud rate change for open port
   * `flush` is not implemented, no specific function in Web Serial API; need to check if possible thru the underlying stream objects
   * `drain` is not implemented, no specific function in Web Serial API; need to check if possible thru the underlying stream objects or `write` function `Promise`
-  * as of 1.0.0 release date, getPorts() in Web Serial API as implemented in Chromium does not return list of serial ports allowed by user, this means at every start of application user will have to select serial port in a popup shown by the browser
+  * as of 1.0.3 release date, getPorts() in Web Serial API as implemented in Chromium does not return list of serial ports allowed by user, this means at every start of application user will have to select serial port in a popup shown by the browser
   * tested only in Chromium 87.0.4280.88
   * Web Serial API specification is a living document and it's implementation is experimental; things might break any moment
 
@@ -70,7 +70,7 @@ Usage of Web Serial API is straightforward, as it does not expose new functional
 import $ from 'jquery';
 import './vendor';
 import SerialPort from '@serialport/stream';
-import WSABinding from 'serialport-binding-web-serial-api';
+import WSABinding from 'serialport-binding-webserialapi';
 import stripAnsi from 'strip-ansi';
 
 // terminal settings
@@ -107,18 +107,17 @@ actref.click(() => {
         autoOpen: true
     });
     myPort.on('data', data => {
-        var sta = $('textarea');
         for(var i = 0; i<data.length; i++) {
             if (data[i] == 8) { // simplistic
-                sta.val(sta.val().slice(0,-1));
+                ta.val(ta.val().slice(0,-1));
             }
         }
         var re = /[\0-\x1F\x7F-\x9F\xAD]/;
-        sta.val(sta.val() + stripAnsi(data.toString()).replace(re,''));
+        ta.val(ta.val() + stripAnsi(data.toString()).replace(re,''));
     });
     myPort.on('open', () => {
-        twinref.prop( "disabled", false );
-        $('textarea').focus();
+        ta.prop( "disabled", false );
+        ta.focus();
     })
 })
 
