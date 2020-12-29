@@ -69,8 +69,8 @@ Usage of Web Serial API is straightforward, as it does not expose new functional
 // very simple serial terminal
 import $ from 'jquery';
 import './vendor';
-import SerialPort from '@serialport/stream'; // Serial / UART access.
-import WSABinding from './wsa-sp-bind';
+import SerialPort from '@serialport/stream';
+import WSABinding from 'serialport-binding-web-serial-api';
 import stripAnsi from 'strip-ansi';
 
 // terminal settings
