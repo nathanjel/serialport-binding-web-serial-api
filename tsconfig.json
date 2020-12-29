@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "typeRoots": ["@types", "./node_modules/@types"],
+    "module": "es6",
+    "target": "es5",
+    "moduleResolution": "node",
+    "sourceMap": false,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "baseUrl": "./",
+    "declaration": true,
+    "types": [
+      "serialport",
+    ]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["test/**/*"]
+}
