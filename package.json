@@ -1,6 +1,6 @@
 {
   "name": "serialport-binding-web-serial-api",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Web Serial API binding for Node Serialport",
   "main": "./dist/wsa-sp-bind.js",
   "types": "./dist/wsa-sp-bind.d.ts",
